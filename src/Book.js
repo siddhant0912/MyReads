@@ -1,6 +1,9 @@
 import React ,{Component} from 'react'
 import Shelfer from './Shelfer'
 import PropTypes from 'prop-types'
+import {Link} from 'react-router-dom'
+
+
 
 
 class Book extends Component{
@@ -10,16 +13,16 @@ class Book extends Component{
         changeShelf:PropTypes.func.isRequired
     }
     render(){
-        const {book, books, changeShelf} = this.props
+        const {book, books, changeCategory} = this.props
 
-        const CoverImg = book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail :  'noCover'
+        const backImg = book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail :  'noCover'
         const title = book.title ? book.title : 'No Title available'
         return(
             <li>
             <div className="book">
               <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${CoverImg})`}}></div>
-                <Shelfer book={book} books={books} changeShelf={changeShelf}/>
+               <Link to={`/book/${book.id}`}><div className="book-cover" style={{ width: 128, height: 188, backgroundImage: `url(${backImg})`}}></div></Link> 
+                <Shelfer book=  {book} books={books} changeShelf={changeCategory}/>
               </div>
               <div className="book-title">{title}</div>
             {book.authors &&(

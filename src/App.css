@@ -205,7 +205,45 @@ button:active {
 
 .book-cover-live {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    background: #eee;
-    width: 128;
-    height: 193;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.book-main {
+    width: 1620px;
+    margin-top: 70px;
+}
+
+.book-cover-title-main {
+    background: fixed;
+}
+
+.book-title-main {
+    margin-left: 700px;
+}
+
+.book-top-main {
+    background: fixed;
+}
+
+.book-authors-main {
+    margin-left: 700px;
+}
+
+.info-link:link,
+.info-link:visited {
+    background-color: #2e7c31;
+    color: white;
+    padding: 14px 25px;
+    margin-left: 700px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.info-link:hover,
+.info-link:active {
+    background-color: red;
 }

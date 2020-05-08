@@ -8,8 +8,8 @@ class BookList extends Component{
         changeShelf:PropTypes.func.isRequired
     }
     render(){
-        const {books, changeShelf} =this.props
-        const shelfTypes = [
+        const {books, changeCategory} =this.props
+        const shelfs = [
             { type: 'currentlyReading', title: 'Currently Reading' },
             { type: 'wantToRead', title: 'Want to Read' },
             { type: 'read', title: 'Read' },
@@ -17,13 +17,13 @@ class BookList extends Component{
 
         return(
             <div className="list-books-content">
-                {shelfTypes.map((shelf,index) =>{
+                {shelfs.map((shelf,index) =>{
                     const shelfbooks = books.filter(book => book.shelf === shelf.type)
                     return(
                         <div className="bookshelf" key={index}>
                             <h2 className="bookshelf-title">{`${shelf.title}`}</h2>
                             <div className="bookshelf-books" >
-                             <BookShelf  books ={shelfbooks} changeShelf={changeShelf}/>  
+                             <BookShelf  books ={shelfbooks} changeCategory={changeCategory}/>  
                             </div>
                         </div>
                     )

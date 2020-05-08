@@ -12,8 +12,8 @@ class Search extends Component {
     }
     state={
         query:"",
-        newBooks:[],
-        searchErr:false
+        searchedBooks:[],
+        searchError:false
     }
     UpdateSearch = async (query) =>{
         this.setState(()=>({
@@ -24,26 +24,26 @@ class Search extends Component {
             if(sbooks.error){
                 return(
                     this.setState({
-                        searchErr:true
+                        searchError:true
                     })
                 )
             }else{
                 this.setState({
-                    newBooks:sbooks,
-                    searchErr:false
+                    searchedBooks:sbooks,
+                    searchError:false
                 })
             }
         }else{
             return(
                 this.setState({
-                    searchErr:true
+                    searchError:true
                 })
             )
         }
     }
     render() {
-        const {query ,newBooks, searchErr} = this.state
-        const {books,changeShelf} = this.props
+        const {query ,searchedBooks, searchError} = this.state
+        const {books,changeCategory} = this.props
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -53,19 +53,19 @@ class Search extends Component {
                 </div>
             </div>
             <div className="search-books-results">
-            {newBooks.length > 0 &&(
+            {searchedBooks.length > 0 &&(
                 <div>
-                    <p>{`Search Returned ${newBooks.length} Books`}</p>
+                    <p>{`Search Returned ${searchedBooks.length} Books`}</p>
                     <ol className="books-grid">
-                        {newBooks.map(book=>(
-                            <Book key={book.id} book={book} books={books} changeShelf={changeShelf}/>
+                        {searchedBooks.map(book=>(
+                            <Book key={book.id} book={book} books={books} changeCategory={changeCategory}/>
                         ))}
 
                     </ol>
                 </div>
                     
             )} 
-            {searchErr && (
+            {searchError && (
                 <h3>{`${query}not Found. Please try again!`}</h3>
             )}   
             </div>  

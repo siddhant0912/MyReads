@@ -4,6 +4,7 @@ import Search from './Search'
 import BookList from './BookList'
 import {Route, Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
+import BookInfo  from './BookInfo'
 
 
 class BooksApp extends React.Component {
@@ -16,14 +17,13 @@ class BooksApp extends React.Component {
     this.setState({
       books:res
     })
-    console.log(res)
   }
-  changeShelf = async(changedbook , shelf) =>{
-      const res = await BooksAPI.update(changedbook,shelf)
+  changeCategory = async(newlyadded , shelf) =>{
+      const res = await BooksAPI.update(newlyadded,shelf)
       if(res){
-        changedbook.shelf = shelf
-        this.setState((prevState)=>({
-          books: prevState.books.filter(book =>book.id !== changedbook.id).concat(changedbook)
+        newlyadded.shelf = shelf
+        this.setState((oldState)=>({
+          books: oldState.books.filter(book =>book.id !== newlyadded.id).concat(newlyadded)
         }))
       }
   }
@@ -37,7 +37,7 @@ class BooksApp extends React.Component {
            <div className="list-books-title">
              <h1>MyReads</h1>
            </div>
-         <BookList books={books} changeShelf={this.changeShelf} />  
+         <BookList books={books} changeCategory={this.changeCategory} />  
          <div className="open-search">
           <Link to="/Search"> <button>Add a book</button></Link>
          </div>
@@ -45,10 +45,19 @@ class BooksApp extends React.Component {
       )} 
       />   
       <Route path="/Search" render ={()=>(
-         <Search books={books} changeShelf={this.changeShelf}/>
+         <Search books={books} changeCategory={this.changeCategory}/>
       )} 
-      />
-        
+      />    
+       <Route path="/book" render={()=>(
+
+         <div className="list-books">
+           <div className="list-books-title">
+             <h1>MyReads</h1>
+           </div>
+               <BookInfo  books={books}  />
+               </div>
+                )}
+              />  
       </div>
     )
   }
