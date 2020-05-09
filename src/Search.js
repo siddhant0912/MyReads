@@ -19,7 +19,7 @@ class Search extends Component {
     UpdateSearch = async (event) =>{
         const query = event.target.value
         this.setState({query})
-        console.log(this.state.searchedBooks.length)
+        
 
         if(query){
             const sbooks =await BooksAPI.search(query)
@@ -36,7 +36,7 @@ class Search extends Component {
                 })
             }
         }else{
-            console.log('Emptying')
+            
            
             this.setState({
                 searchedBooks:[],
