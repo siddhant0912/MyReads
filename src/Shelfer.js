@@ -5,7 +5,6 @@ class Shelfer extends Component{
     static propTypes ={
         book:PropTypes.object.isRequired,
         books:PropTypes.array.isRequired,
-        changeShelf:PropTypes.func.isRequired
     }
     updateShelf = event =>{
         this.props.changeShelf(this.props.book , event.target.value)
@@ -24,7 +23,7 @@ render(){
     return(
         <div className="book-shelf-changer">
         <select onChange={this.updateShelf} defaultValue={currentShelf}>
-          <option value="none" disabled>Move to...</option>
+          <option disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
           <option value="read">Read</option>
